@@ -36,12 +36,12 @@ func execQuery(st *sql.Stmt) error {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var t time.Time
-		err = rows.Scan(&t)
+		var c interface{}
+		err = rows.Scan(&c)
 		if err != nil {
 			return err
 		}
-		fmt.Printf("Time: %v\n", t)
+		fmt.Printf(c)
 	}
 	return rows.Err()
 }

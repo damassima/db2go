@@ -11,7 +11,7 @@ import (
 
 var (
 	connStr = flag.String("conn", "", "connection string to use")
-	sql     = flag.String("sql", "", "sql")
+	sqls    = flag.String("sql", "", "sql")
 	repeat  = flag.Uint("repeat", 1, "number of times to repeat query")
 )
 
@@ -52,7 +52,7 @@ func dbOperations() error {
 		return err
 	}
 	defer db.Close()
-	st, err := db.Prepare(*sql)
+	st, err := db.Prepare(*sqls)
 	if err != nil {
 		return err
 	}
@@ -74,7 +74,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, "-conn is required")
 		flag.Usage()
 	}
-	if *sql == "" {
+	if *sqls == "" {
 		fmt.Fprintln(os.Stderr, "-sql is required")
 		flag.Usage()
 	}

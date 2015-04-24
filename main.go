@@ -6,7 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"time"
 )
 
 var (
@@ -41,7 +40,7 @@ func execQuery(st *sql.Stmt) error {
 		if err != nil {
 			return err
 		}
-		fmt.Printf(c)
+		fmt.Println(c)
 	}
 	return rows.Err()
 }
